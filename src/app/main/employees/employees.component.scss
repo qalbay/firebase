@@ -1,0 +1,18 @@
+.icon {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.table-height {
+    height: calc(100vh - 262px);
+    overflow: auto;
+}
+
+.loader-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 320px);
+}

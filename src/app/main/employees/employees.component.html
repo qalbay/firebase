@@ -1,0 +1,49 @@
+<div class="my-5 shadow p-3">
+    <div class="row align-items-center mb-4">
+        <!-- <h4>Employees List</h4> -->
+        <div class="col">
+            <input class="form-control me-2" placeholder="search employees by name..." [formControl]="search">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-secondary" routerLink="/employees/add">Add Employee</button>
+        </div>
+    </div>
+    <div class="table-height">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employees;let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{employee.first_name}}</td>
+                    <td>{{employee.last_name}}</td>
+                    <td>{{employee.age}}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <button class="material-icons-outlined icon me-2" (click)="editEmployee(employee)">
+                                edit
+                            </button>
+                            <button class="material-icons-outlined icon" (click)="deleteEmployee(employee)">
+                                delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="!isData" class="loader-wrapper">
+            <img src="../../../../assets/images/loader.gif">
+        </div>
+    </div>
+    <!-- <div *ngIf="!isData && employees.length==0" class="text-center my-5">
+        <h5>No Data Found</h5>
+    </div> -->
+</div>
