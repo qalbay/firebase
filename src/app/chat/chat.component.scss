@@ -1,0 +1,68 @@
+@import '../../styles.scss';
+
+.message-received {
+    background-color: #c6cbde;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-bottom: 3px;
+    word-break: break-word;
+    border-top-left-radius: 0px;
+    margin-top: 10px;
+}
+
+.message-sent {
+    background-color: $orange;
+    color: $white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-bottom: 3px;
+    word-break: break-word;
+    border-top-right-radius: 0px;
+    margin-top: 10px;
+}
+
+.message {
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.time {
+    color: #c6cbde;
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+::placeholder {
+    font-size: 16px;
+
+}
+
+.form-control {
+    border-radius: 25px;
+    border: none;
+    background-color: #c6cbde;
+    padding-left: 15px;
+    line-height: 2.375rem;
+    height: 45px;
+    font-size: 14px;
+}
+.form-control:focus{
+    box-shadow: 0 0 0 1px $orange;
+}
+.img-res {
+    height: 38px;
+    width: 38px;
+}
+
+.date {
+    display: block;
+    text-align: center;
+}
+
+
+
+
+.main {
+    height: calc(100vh - 133px);
+    overflow: auto;
+}

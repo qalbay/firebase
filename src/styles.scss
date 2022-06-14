@@ -1,3 +1,15 @@
+$purple: #972647;
+$yellow: #ff9800;
+$black: #212529;
+$orange: #e3432a;
+$blue: #a5aecb;
+$light-pink: #fff8ef;
+$light-purple: #fef4f3;
+$light-blue: #f7f8fc;
+$input-bg: #e7e7e7;
+$text-bubble: #e7e7e7;
+$white: #ffffff;
+
 tr {
   vertical-align: middle;
 }
@@ -48,9 +60,31 @@ a {
 
 .text-danger {
   font-size: 13px;
-  margin-top:5px ;
+  margin-top: 5px;
 }
 
-label{
+label {
   margin-bottom: 6px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: LightGray;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: Silver;
 }

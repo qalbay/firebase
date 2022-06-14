@@ -12,7 +12,7 @@
                         class="btn btn-outline-secondary btn-sm dropdown-toggle d-flex align-items-center"
                         data-bs-toggle="dropdown">
                         <img [src]="user?.user?.photoURL ? user.user.photoURL : '../../../assets/images/small_avatar.png'" class="user-img me-2">
-                        <div class="username">{{user?.user?.displayName ? user.user.displayName.split(" ")[0]:'John'}}</div>
+                        <div class="username">{{user?.user?.displayName ? user?.user?.displayName?.split(" ")[0]:'John'}}</div>
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/profile" routerLinkActive="active">Profile</a></li>
@@ -24,6 +24,6 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="main">
     <router-outlet></router-outlet>
 </div>
