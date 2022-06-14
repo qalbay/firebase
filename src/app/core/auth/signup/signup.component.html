@@ -8,17 +8,50 @@
                         <form [formGroup]="signupForm">
                             <div class="form-group mb-2">
                                 <label>Name:</label>
-                                <input type="text" class="form-control" placeholder="Enter Name" formControlName="name">
+                                <input type="text" class="form-control" placeholder="Enter Name" formControlName="name"
+                                    [ngClass]="{ 'is-invalid':signupForm.controls['name']?.touched && f['name'].errors }">
+                                <div class="text-danger"
+                                    *ngIf="signupForm.controls['name']?.touched && signupForm.controls['name']?.errors?.required">
+                                    First Name is required
+                                </div>
                             </div>
                             <div class="form-group mb-2">
                                 <label>Email:</label>
                                 <input type="email" class="form-control" placeholder="Enter Email"
-                                    formControlName="email">
+                                    formControlName="email"
+                                    [ngClass]="{ 'is-invalid':signupForm.controls['email']?.touched && f['email'].errors }">
+                                <div class="text-danger"
+                                    *ngIf="signupForm.controls['email']?.touched && signupForm.controls['email']?.errors?.required">
+                                    Email is required
+                                </div>
+                                <div class="text-danger"
+                                    *ngIf="signupForm.controls['email']?.touched && signupForm.controls['email']?.errors?.pattern">
+                                    Invalid email
+                                </div>
                             </div>
                             <div class="form-group mb-2">
                                 <label>Password:</label>
                                 <input type="password" class="form-control" placeholder="Enter Password"
-                                    formControlName="password">
+                                    formControlName="password"
+                                    [ngClass]="{ 'is-invalid':signupForm.controls['password']?.touched && f['password'].errors }">
+                                <div class="text-danger"
+                                    *ngIf="signupForm.controls['password']?.touched && signupForm.controls['password']?.errors?.required">
+                                    Password is required
+                                </div>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>Confirm Password:</label>
+                                <input type="password" class="form-control" placeholder="Confirm Password"
+                                    formControlName="confirm_password"
+                                    [ngClass]="{ 'is-invalid':signupForm.controls['confirm_password']?.touched && f['confirm_password'].errors }">
+                                <div class="text-danger"
+                                    *ngIf="signupForm.controls['confirm_password']?.touched && signupForm.controls['confirm_password']?.errors?.required">
+                                    Confirm Password is required.
+                                </div>
+                                <div class="text-danger"
+                                    *ngIf="signupForm.controls['confirm_password']?.touched && signupForm.controls['confirm_password']?.errors?.confirmValidator">
+                                    Passwords do not match.
+                                </div>
                             </div>
                             <div class="form-group mb-2">
                                 <label>Phone Number:</label>
@@ -26,7 +59,8 @@
                                     formControlName="phone_number">
                             </div>
                             <div class="mt-4 text-center">
-                                <button class=" btn btn-sm btn-secondary w-100">Signup</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100" (click)="signup()"
+                                    [disabled]="signupForm.invalid">Signup</button>
                                 <div class="small mt-2">Already Have an account? <a
                                         routerLink="/authentication/signin">Log in</a> </div>
                             </div>

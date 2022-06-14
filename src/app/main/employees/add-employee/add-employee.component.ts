@@ -55,13 +55,13 @@ export class AddEmployeeComponent implements OnInit, OnDestroy {
     let data = { ...this.addEmployeeForm.value, id: timestamp_id }
     this.employeeService.addEmployee(data).subscribe((res: any) => {
       console.log(res)
-      this.router.navigate(['/employee/add'])
+      this.router.navigate(['/employees'])
     })
   }
 
   updateEmployee() {
     this.employeeService.updateEmployee(this.addEmployeeForm.value, this.employeeId);
-    this.router.navigate(['/employee/add'])
+    this.router.navigate(['/employees'])
   }
 
   ngOnDestroy(): void {

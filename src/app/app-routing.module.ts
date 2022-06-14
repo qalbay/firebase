@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/auth/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout/layout.component';
@@ -5,6 +6,7 @@ import { LayoutComponent } from './core/layout/layout.component';
 const routes: Routes = [
   {
     path: 'employees',
+    canActivate: [AuthGuard],
     component: LayoutComponent,
     loadChildren: () => import('./main/employees/employees.module').then(m => m.EmployeesModule)
   },
@@ -14,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: "**",
-    redirectTo: "/authentication",
+    redirectTo: "authentication",
     pathMatch: "full",
   },
 ];

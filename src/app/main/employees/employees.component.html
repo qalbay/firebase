@@ -20,7 +20,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let employee of employees;let i=index">
+                <tr *ngFor="let employee of employees| paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };let i=index">
                     <td>{{i+1}}</td>
                     <td>{{employee.first_name}}</td>
                     <td>{{employee.last_name}}</td>
@@ -39,11 +44,17 @@
             </tbody>
         </table>
 
-        <div *ngIf="!isData" class="loader-wrapper">
-            <img src="../../../../assets/images/loader.gif">
+        <div class="d-flex justify-content-center">
+            <div *ngIf="!isData" class="loader-wrapper">
+                <img src="../../../../assets/images/loader.gif">
+            </div>
         </div>
-    </div>
-    <!-- <div *ngIf="!isData && employees.length==0" class="text-center my-5">
+        <!-- <div *ngIf="!isData && employees.length==0" class="text-center my-5">
         <h5>No Data Found</h5>
     </div> -->
+    </div>
+    <div class="text-center">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
 </div>

@@ -1,3 +1,4 @@
+import { AuthService } from './../../core/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from './employees.service';
 import { Router } from '@angular/router';
@@ -17,15 +18,24 @@ export class EmployeesComponent implements OnInit {
   search = new FormControl('')
   subject: Subject<any> = new Subject();
 
+  // pagination
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+
   constructor(
     private employeeService: EmployeesService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
     this.getAllEmployees();
 
     this.searchEmployee()
+
+    this.authService.getCurrentUser();
+
   }
 
   searchEmployee() {
@@ -67,6 +77,16 @@ export class EmployeesComponent implements OnInit {
     this.employeeService.deleteEmployee(data.id)
     this.getAllEmployees();
 
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getAllEmployees();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getAllEmployees();
   }
 
 }
