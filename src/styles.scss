@@ -1,16 +1,56 @@
 tr {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .card {
-    border: none;
+  border: none !important;
 }
 
 a {
-    text-decoration: none;
-    font-weight: 700;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  color: grey !important;
+  &:hover {
     color: grey;
-    &:hover {
-        color: grey;
-    }
+  }
+}
+
+.dropdown-menu a {
+  cursor: pointer;
+}
+
+.ngx-pagination {
+  font-weight: 700;
+}
+
+.ngx-pagination .current {
+  color: white !important;
+  background-color: rgb(237, 43, 0) !important;
+}
+
+.ngx-pagination a {
+  color: black !important;
+  background-color: white !important;
+  text-decoration: none !important;
+
+  &:hover {
+    color: rgb(237, 43, 0) !important;
+  }
+}
+
+.ngx-pagination button {
+  display: none !important;
+}
+
+.mat-tab-header-pagination {
+  display: none !important;
+}
+
+.text-danger {
+  font-size: 13px;
+  margin-top:5px ;
+}
+
+label{
+  margin-bottom: 6px;
 }
