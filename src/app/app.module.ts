@@ -11,14 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ChatComponent } from './chat/chat.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    ChatComponent
   ],
   imports: [
     BrowserModule,

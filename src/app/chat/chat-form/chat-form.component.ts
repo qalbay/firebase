@@ -1,3 +1,5 @@
+import { ChatService } from './../chat.service';
+import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-form.component.scss']
 })
 export class ChatFormComponent implements OnInit {
-
-  constructor() { }
+  message=new FormControl('',[Validators.required]);
+  
+  constructor(private chatService:ChatService) { }
 
   ngOnInit(): void {
+  }
+
+  sendMessage(){
+    this.chatService.sendMessage(this.message.value);
+    this.message.reset()
   }
 
 }

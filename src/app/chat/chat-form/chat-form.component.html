@@ -1,9 +1,14 @@
 <form>
     <div class="chat-footer border-top">
         <div class="d-flex align-items-center p-3">
-            <input type="text" class="form-control grey ml-2" placeholder="Type your message...">
-            <button class="ml-2 mb-2" type="submit">
-                <img src="../../../assets/images/dashboard_send_message_active_icon.png" class="img-res">
+            <input type="text" class="form-control grey ms-2" placeholder="Type your message..."
+                [formControl]="message">
+            <button class="ms-2 mb-2" type="button" (click)="sendMessage()" [disabled]="message.invalid">
+                <img src="../../../assets/images/dashboard_send_message_inactive_button.png" height="40"
+                    *ngIf="message.invalid;else sendBtnEnabled">
+                <ng-template #sendBtnEnabled>
+                    <img src="../../../assets/images/dashboard_send_message_active_icon.png" height="40">
+                </ng-template>
             </button>
         </div>
     </div>

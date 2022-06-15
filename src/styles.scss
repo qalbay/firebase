@@ -14,6 +14,59 @@ tr {
   vertical-align: middle;
 }
 
+.form-control {
+  border-radius: 25px;
+  border: none;
+  background-color: $input-bg;
+  padding-left: 15px;
+  line-height: 2.375rem;
+  height: 45px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 1px #e3432a;
+}
+
+.custom-btn {
+  background: white;
+  font-size: 16px;
+  color: $orange;
+  border-radius: 5px;
+  text-align: center;
+  padding: 6px 30px;
+  outline: 0;
+  box-shadow: none;
+  border: 1px solid $orange;
+  font-weight: 500;
+  min-height: 38px;
+
+  &:hover {
+      background: $orange;
+      color: white;
+  }
+}
+
+.custom-btn-purple {
+  background: white;
+  font-size: 16px;
+  color: $purple;
+  border-radius: 5px;
+  text-align: center;
+  padding: 6px 30px;
+  outline: 0;
+  box-shadow: none;
+  border: 1px solid $purple;
+  font-weight: 500;
+  min-height: 38px;
+
+  &:hover {
+      background: $purple;
+      color: white;
+  }
+}
+
 .card {
   border: none !important;
 }
@@ -21,9 +74,9 @@ tr {
 a {
   text-decoration: none !important;
   font-weight: 700 !important;
-  color: grey !important;
+  color: $purple !important;
   &:hover {
-    color: grey;
+    color: $purple;
   }
 }
 

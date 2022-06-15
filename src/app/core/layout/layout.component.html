@@ -2,17 +2,19 @@
     <div class="container-fluid mx-3">
         <div class="d-flex align-items-center justify-content-between w-100">
             <div>
-                <a class="me-3" routerLink="/home" routerLinkActive="active">Home</a>
-                <a class="me-3" routerLink="/about-us" routerLinkActive="active">About</a>
-                <a class="me-3" routerLink="/employees" routerLinkActive="active">Employees</a>
+                <a class="me-3 px-2" routerLink="/home" routerLinkActive="active">Home</a>
+                <a class="me-3 px-2" routerLink="/chat" routerLinkActive="active">Chat</a>
+                <a class="me-3 px-2" routerLink="/employees" routerLinkActive="active">Employees</a>
             </div>
             <div>
                 <div class="dropdown">
                     <button type="button"
-                        class="btn btn-outline-secondary btn-sm dropdown-toggle d-flex align-items-center"
+                        class="custom-btn-purple dropdown-toggle d-flex align-items-center"
                         data-bs-toggle="dropdown">
-                        <img [src]="user?.user?.photoURL ? user.user.photoURL : '../../../assets/images/small_avatar.png'" class="user-img me-2">
-                        <div class="username">{{user?.user?.displayName ? user?.user?.displayName?.split(" ")[0]:'John'}}</div>
+                        <img [src]="user?.user?.photoURL ? user.user.photoURL : '../../../assets/images/small_avatar.png'"
+                            class="user-img me-2">
+                        <div class="username">{{user?.user?.displayName ? user?.user?.displayName?.split("
+                            ")[0]:'John'}}</div>
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/profile" routerLinkActive="active">Profile</a></li>

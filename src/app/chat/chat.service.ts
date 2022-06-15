@@ -1,9 +1,48 @@
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
+import { ChatMessage } from '../models/chat-message.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+  user: any;
+  chatMessages: any;
+  chatMessage!: ChatMessage;
+  userName!: Observable<string>;
 
-  constructor() { }
+  constructor(
+    public afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+  ) {
+    this.afAuth.authState.subscribe(auth => {
+      if (auth !== undefined && auth !== null) {
+        this.user = auth;
+      }
+    })
+  }
+
+  sendMessage(msg: string) {
+    const timestamp = this.getTimestamp();
+    const mesgDetails = {
+      timeSent:  new Date().getTime(),
+      message: msg
+    }
+    return of(this.afs.doc(`messages/${mesgDetails.timeSent}`).set(mesgDetails))
+  }
+
+  getMessages() {
+    return this.afs.collection('messages').valueChanges();
+  }
+
+
+  getTimestamp() {
+    const now = new Date();
+    const date = now.getUTCFullYear() + '/' + (now.getUTCMonth() + 1) + '/' + now.getUTCDate();
+    const time = now.getUTCHours() + '/' + now.getUTCMinutes() + '/' + now.getUTCSeconds();
+    return (date + ' ' + time)
+  }
+
 }
