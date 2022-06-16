@@ -1,26 +1,33 @@
 <div class="chat-wrapper">
-    <div class="container my-5 shadow">
-        <div class="main py-4" #scrollMe>
-            <div>
-                <div class="d-flex align-items-start">
-                    <img src="../../assets/images/user_chat_avatar.png" class="me-2" height="35">
-                    <div class="message">
-                        <div class="message-received">
-                            Hi!! Text me once available.
+    <div class="container-fluid my-5 shadow">
+        <div class="row">
+            <div class="col-auto">
+
+            </div>
+            <div class="col">
+                <div class="main py-4" #scrollMe>
+                    <div>
+                        <div class="d-flex align-items-start">
+                            <img src="../../assets/images/user_chat_avatar.png" class="me-2" height="35">
+                            <div class="message">
+                                <div class="message-received">
+                                    Hi!! Text me once available.
+                                </div>
+                                <div class="time">12/21/22</div>
+                            </div>
                         </div>
-                        <div class="time">12/21/22</div>
+                    </div>
+
+                    <div class="d-flex align-items-start justify-content-end" *ngFor="let message of messages">
+                        <div class="message d-flex flex-column align-items-end">
+                            <div class="message-sent">{{message.message}}</div>
+                            <div class="time">12/21/22</div>
+                        </div>
+                        <img src="../../assets/images/small_avatar.png" class="profileImage ms-2" height="35">
                     </div>
                 </div>
-            </div>
-
-            <div class="d-flex align-items-start justify-content-end" *ngFor="let message of messages">
-                <div class="message d-flex flex-column align-items-end">
-                    <div class="message-sent">{{message.message}}</div>
-                    <div class="time">12/21/22</div>
-                </div>
-                <img src="../../assets/images/small_avatar.png" class="profileImage ms-2" height="35">
+                <app-chat-form></app-chat-form>
             </div>
         </div>
-        <app-chat-form></app-chat-form>
     </div>
 </div>
