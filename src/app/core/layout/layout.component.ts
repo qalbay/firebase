@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user')!);
+  userId = new FormControl('');
 
   constructor(
     private authService: AuthService,
@@ -22,4 +24,9 @@ export class LayoutComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/'])
   }
+
+  submitUserId() {
+    localStorage.setItem('userId', JSON.stringify(this.userId.value))
+  }
+
 }

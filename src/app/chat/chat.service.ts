@@ -9,14 +9,16 @@ import { Observable, of } from 'rxjs';
 })
 export class ChatService {
   user: any;
-  chatMessages: any;
-  chatMessage!: ChatMessage;
-  userName!: Observable<string>;
+  userId!: number;
+  // chatMessages: any;
+  // chatMessage!: ChatMessage;
+  // userName!: Observable<string>;
 
   constructor(
     public afAuth: AngularFireAuth,
     private afs: AngularFirestore,
   ) {
+    this.userId = +localStorage.getItem('userId')!;
     this.afAuth.authState.subscribe(auth => {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
@@ -25,16 +27,25 @@ export class ChatService {
   }
 
   sendMessage(msg: string) {
-    const timestamp = this.getTimestamp();
+    // const timestamp = this.getTimestamp();
     const mesgDetails = {
-      timeSent:  new Date().getTime(),
-      message: msg
+      timeSent: new Date().getTime(),
+      message: msg,
+      userId: this.userId
     }
     return of(this.afs.doc(`messages/${mesgDetails.timeSent}`).set(mesgDetails))
   }
 
-  getMessages() {
-    return this.afs.collection('messages').valueChanges();
+  getSentMessages() {
+    return this.afs.collection('messages', (ref) => {
+      return ref.where('userId', '==', this.userId)
+    }).valueChanges()
+  }
+
+  getReceivedMessages() {
+    return this.afs.collection('messages', (ref) => {
+      return ref.where('userId', '!=', this.userId)
+    }).valueChanges()
   }
 
 

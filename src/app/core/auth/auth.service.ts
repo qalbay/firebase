@@ -29,15 +29,14 @@ export class AuthService {
       })
   }
   signin(email: string, password: string) {
-    this.firebaseAuth.signInWithEmailAndPassword(email, password).then((res: any) => {
+    of(this.firebaseAuth.signInWithEmailAndPassword(email, password)).subscribe((res: any) => {
       console.log(res);
       localStorage.setItem('user', JSON.stringify(res.user))
       this.router.navigateByUrl('/employees')
       this.toastr.success('Loggedin successfully!');
+    }, error => {
+      this.toastr.error(error.message);
     })
-      .catch((error) => {
-        this.toastr.error(error.message);
-      })
   }
 
   GoogleAuth() {
@@ -58,9 +57,9 @@ export class AuthService {
     }
   }
 
-  getCurrentUser(){
+  getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
-      var user = this.firebaseAuth.onAuthStateChanged(function(user){
+      var user = this.firebaseAuth.onAuthStateChanged(function (user) {
         if (user) {
           resolve(user);
         } else {
@@ -71,8 +70,8 @@ export class AuthService {
   }
 
 
-    logout() {
-      this.firebaseAuth.signOut();
-      localStorage.clear()
-    }
+  logout() {
+    this.firebaseAuth.signOut();
+    localStorage.clear()
   }
+}

@@ -8,8 +8,7 @@
             </div>
             <div>
                 <div class="dropdown">
-                    <button type="button"
-                        class="custom-btn-purple dropdown-toggle d-flex align-items-center"
+                    <button type="button" class="custom-btn-purple dropdown-toggle d-flex align-items-center"
                         data-bs-toggle="dropdown">
                         <img [src]="user?.user?.photoURL ? user.user.photoURL : '../../../assets/images/small_avatar.png'"
                             class="user-img me-2">
@@ -19,6 +18,10 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/profile" routerLinkActive="active">Profile</a></li>
                         <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+                        <li class="dropdown-item"><input type="number" placeholder="4 digit ID" class="form-control"
+                                [formControl]="userId"></li>
+                        <li class="dropdown-item text-center"><button class="custom-btn" (click)="submitUserId()">Submit</button>
+                        </li>
                     </ul>
                 </div>
             </div>

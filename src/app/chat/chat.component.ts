@@ -1,5 +1,6 @@
 import { ChatService } from './chat.service';
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -9,28 +10,46 @@ import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@ang
 export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
 
-  messages: any;
+  messagesSent: any;
+  messagesReceived: any;
   isData: boolean = true;
+
   constructor(
     private chatService: ChatService
   ) { }
 
   ngOnInit() {
-    this.getAllEmployees();
-
+    this.getAllMessages();
   }
 
-  getAllEmployees() {
+  getAllMessages() {
     this.isData = false;
-    this.messages = []
-    this.chatService.getMessages()
-      .subscribe((res: any) => {
-        console.log(res)
-        this.messages = res;
-        this.isData = true;
-        this.scrollToBottom();
+    this.chatService.getSentMessages().subscribe((res: any) => {
+      this.messagesSent = res;
+      this.isData = true;
+      this.scrollToBottom();
+    })
+    this.chatService.getReceivedMessages().subscribe((res: any) => {
+      this.messagesReceived = res;
+      this.isData = true;
+      this.scrollToBottom();
+    })
 
-      })
+
+
+    // this.isData = false;
+    // forkJoin([
+    //   this.chatService.getSentMessages(),
+    //   this.chatService.getReceivedMessages()
+    // ])
+    // this.chatService.getSentMessages().subscribe((res: any) => {
+    //   this.messagesSent = res;
+    //   console.log("sent", this.messagesSent)
+    //   console.log("Received", this.messagesReceived);
+    //   [this.messagesSent, this.messagesReceived] = res;
+    //   this.isData = true;
+    //   this.scrollToBottom();
+    // })
   }
 
   ngAfterViewChecked() {
@@ -42,5 +61,4 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
   }
-
 }
