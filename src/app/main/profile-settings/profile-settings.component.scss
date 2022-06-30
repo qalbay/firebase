@@ -1,0 +1,17 @@
+.border-right {
+  border-right: 1px solid gainsboro;
+}
+
+.edit-icon {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  border: none;
+  border-radius: 50%;
+}
+
+.profile-img {
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid gainsboro;
+}

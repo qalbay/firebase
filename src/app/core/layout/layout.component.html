@@ -5,6 +5,7 @@
                 <a class="me-3 px-2" routerLink="/home" routerLinkActive="active">Home</a>
                 <a class="me-3 px-2" routerLink="/chat" routerLinkActive="active">Chat</a>
                 <a class="me-3 px-2" routerLink="/employees" routerLinkActive="active">Employees</a>
+                <a class="me-3 px-2" routerLink="/profile-settings" routerLinkActive="active">Profile Settings</a>
             </div>
             <div>
                 <div class="dropdown">
@@ -16,7 +17,7 @@
                             ")[0]:'John'}}</div>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="/profile" routerLinkActive="active">Profile</a></li>
+                        <li><a class="dropdown-item" routerLink="/profile-settings" routerLinkActive="active">My Profile</a></li>
                         <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
                         <li class="dropdown-item"><input type="number" placeholder="4 digit ID" class="form-control"
                                 [formControl]="userId"></li>

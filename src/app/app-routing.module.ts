@@ -11,6 +11,12 @@ const routes: Routes = [
     loadChildren: () => import('./main/employees/employees.module').then(m => m.EmployeesModule)
   },
   {
+    path: 'profile-settings',
+    canActivate: [AuthGuard],
+    component: LayoutComponent,
+    loadChildren: () => import('./main/profile-settings/profile-settings.module').then(m => m.ProfileSettingsModule)
+  },
+  {
     path: 'chat',
     canActivate: [AuthGuard],
     component: LayoutComponent,
