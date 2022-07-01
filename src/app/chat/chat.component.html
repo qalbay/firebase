@@ -2,28 +2,38 @@
     <div class="container-fluid my-5 shadow">
         <div class="row">
             <div class="col-auto">
-
+<div class="contacts-wrapper">
+    <div class="contact">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <!-- <img -->
+            </div>
+        </div>
+    </div>
+</div>
             </div>
             <div class="col">
                 <div class="main p-4" #scrollMe *ngIf="isData">
-                    <div *ngFor="let message of messagesReceived">
-                        <div class="d-flex align-items-start">
+                    <div *ngFor="let message of allMessages">
+                        <div class="d-flex align-items-start" *ngIf="userId != message.userId">
                             <img src="../../assets/images/user_chat_avatar.png" class="me-2" height="35">
                             <div class="message">
                                 <div class="message-received">
                                     {{message.message}}
                                 </div>
-                                <div class="time">12/21/22</div>
+                                <div class="time">{{message.time}}</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="d-flex align-items-start justify-content-end" *ngFor="let message of messagesSent">
-                        <div class="message d-flex flex-column align-items-end">
-                            <div class="message-sent">{{message.message}}</div>
-                            <div class="time">12/21/22</div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="date">Today</div>
                         </div>
-                        <img src="../../assets/images/small_avatar.png" class="profileImage ms-2" height="35">
+                        <div class="d-flex align-items-start justify-content-end" *ngIf="userId == message.userId">
+                            <div class="message d-flex flex-column align-items-end">
+                                <div class="message-sent">{{message.message}}</div>
+                                <div class="time">{{message.time}}</div>
+                            </div>
+                            <img src="../../assets/images/small_avatar.png" class="profileImage ms-2" height="35">
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">

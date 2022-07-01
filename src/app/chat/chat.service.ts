@@ -29,11 +29,15 @@ export class ChatService {
   sendMessage(msg: string) {
     // const timestamp = this.getTimestamp();
     const mesgDetails = {
-      timeSent: new Date().getTime(),
+      timestamp: new Date().getTime(),
       message: msg,
       userId: this.userId
     }
-    return of(this.afs.doc(`messages/${mesgDetails.timeSent}`).set(mesgDetails))
+    return of(this.afs.doc(`messages/${mesgDetails.timestamp}`).set(mesgDetails))
+  }
+
+  getAllMessages() {
+    return this.afs.collection('messages').valueChanges();
   }
 
   getSentMessages() {

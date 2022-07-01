@@ -10,9 +10,9 @@ import { forkJoin } from 'rxjs';
 export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
 
-  messagesSent: any;
-  messagesReceived: any;
+  allMessages: any;
   isData: boolean = true;
+  userId = localStorage.getItem('userId')
 
   constructor(
     private chatService: ChatService
@@ -24,32 +24,20 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   getAllMessages() {
     this.isData = false;
-    this.chatService.getSentMessages().subscribe((res: any) => {
-      this.messagesSent = res;
+    this.chatService.getAllMessages().subscribe((res: any) => {
+      this.allMessages = res.map((msg: any) => {
+        msg.time = this.getTime(msg.timestamp)
+        return msg
+      });
       this.isData = true;
       this.scrollToBottom();
     })
-    this.chatService.getReceivedMessages().subscribe((res: any) => {
-      this.messagesReceived = res;
-      this.isData = true;
-      this.scrollToBottom();
-    })
+  }
 
+  getTime(timestamp: any) {
+    const date = new Date(timestamp)
+    return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
 
-
-    // this.isData = false;
-    // forkJoin([
-    //   this.chatService.getSentMessages(),
-    //   this.chatService.getReceivedMessages()
-    // ])
-    // this.chatService.getSentMessages().subscribe((res: any) => {
-    //   this.messagesSent = res;
-    //   console.log("sent", this.messagesSent)
-    //   console.log("Received", this.messagesReceived);
-    //   [this.messagesSent, this.messagesReceived] = res;
-    //   this.isData = true;
-    //   this.scrollToBottom();
-    // })
   }
 
   ngAfterViewChecked() {
